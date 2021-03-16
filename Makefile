@@ -11,7 +11,7 @@ generate-migrations-diff:
 	docker-compose exec php-fpm ./bin/console doctrine:migrations:diff
 
 migrate:
-	docker-compose exec php-fpm ./bin/console migrate
+	docker-compose exec php-fpm ./bin/console doctrine:migrations:migrate
 
 run-tests:
 	docker-compose exec php-fpm ./vendor/bin/phpunit tests/ -vvvv
