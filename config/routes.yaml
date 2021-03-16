@@ -5,3 +5,4 @@
 example:
   path: /example/action/{testInt}
   controller: App\Example\Application\TestAction
+  methods: ['GET']

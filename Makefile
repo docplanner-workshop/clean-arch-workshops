@@ -14,4 +14,4 @@ migrate:
 	docker-compose exec php-fpm ./bin/console doctrine:migrations:migrate
 
 run-tests:
-	docker-compose exec php-fpm ./vendor/bin/phpunit tests/ -vvvv
+	docker-compose exec -e APP_ENV=test php-fpm ./vendor/bin/phpunit tests/ -vvvv
