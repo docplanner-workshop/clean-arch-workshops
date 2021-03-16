@@ -19,7 +19,10 @@ final class InputValidationExceptionListener
         }
 
         $exceptionEvent->setResponse(
-            new JsonResponse($exception->getErrors())
+            new JsonResponse(
+                $exception->getErrors(),
+                JsonResponse::HTTP_UNPROCESSABLE_ENTITY
+            )
         );
     }
 
