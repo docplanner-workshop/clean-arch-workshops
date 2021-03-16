@@ -6,7 +6,37 @@
 parameters:
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  App\Shared\Symfony\Listener\InputValidationExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception }
+
+  App\Shared\Symfony\ParamConverter\InputFactoryServiceLocator:
+    arguments:
+      - !tagged_locator {tag: action.input_factory, index_by: key, default_index_method: 'supports'}
+
+  App\Shared\Symfony\ParamConverter\ActionInputParamConverter:
+    tags:
+      - { name: request.param_converter, converter: converter.action_input, priority: false }
+
+  App\Shared\Symfony\Response\ResponseFactory:
+    class: App\Shared\Symfony\Response\JsonResponseFactory
+
+  App\Shared\Symfony\Response\ResponseEventListener:
+    arguments:
+      - '@App\Shared\Symfony\Response\ResponseFactory'
+      - '@annotations.reader'
+    tags:
+      - { name: kernel.event_listener, event: kernel.view }
+
+  App\Example\Application\TestActionInputFactory:
+    tags:
+      - { name: action.input_factory }
+
+  get_set_method_normalizer:
+    class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+    tags: [ serializer.normalizer ]
