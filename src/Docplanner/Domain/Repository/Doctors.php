@@ -10,4 +10,6 @@ interface Doctors
 {
     /** @throws NotFoundException */
     public function getById(int $id): Doctor;
+
+    public function save(Doctor $doctor): void;
 }

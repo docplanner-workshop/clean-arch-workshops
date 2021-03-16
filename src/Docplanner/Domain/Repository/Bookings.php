@@ -9,4 +9,6 @@ interface Bookings
 {
     /** @return Booking[] */
     public function findForDoctorId(int $id): array;
+
+    public function save(Booking $booking): void;
 }
