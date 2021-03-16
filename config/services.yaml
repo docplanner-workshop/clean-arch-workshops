@@ -11,23 +11,11 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+  #Event Listeners
+
   App\Shared\Symfony\Listener\InputValidationExceptionListener:
     tags:
       - { name: kernel.event_listener, event: kernel.exception }
-
-  App\Shared\Symfony\ParamConverter\InputFactoryServiceLocator:
-    arguments:
-      - !tagged_locator {tag: action.input_factory, index_by: key, default_index_method: 'supports'}
-
-  App\Shared\Symfony\InputFactory\InputValidator:
-    class: App\Shared\Symfony\InputFactory\SymfonyValidator
-
-  App\Shared\Symfony\ParamConverter\ActionInputParamConverter:
-    tags:
-      - { name: request.param_converter, converter: converter.action_input, priority: false }
-
-  App\Shared\Symfony\Response\ResponseFactory:
-    class: App\Shared\Symfony\Response\JsonResponseFactory
 
   App\Shared\Symfony\Response\ResponseEventListener:
     arguments:
@@ -36,10 +24,30 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.view }
 
-  App\Example\Application\TestActionInputFactory:
+  #Infrastructure
+
+  App\Shared\Symfony\ParamConverter\ActionInputParamConverter:
     tags:
-      - { name: action.input_factory }
+      - { name: request.param_converter, converter: converter.action_input, priority: false }
+
+  App\Shared\Symfony\ParamConverter\InputFactoryServiceLocator:
+    arguments:
+      - !tagged_locator {tag: action.input_factory, index_by: key, default_index_method: 'supports'}
 
   get_set_method_normalizer:
     class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
     tags: [ serializer.normalizer ]
+
+  #Response Factories
+
+  App\Shared\Symfony\InputFactory\InputValidator:
+    class: App\Shared\Symfony\InputFactory\SymfonyValidator
+
+  App\Shared\Symfony\Response\ResponseFactory:
+    class: App\Shared\Symfony\Response\JsonResponseFactory
+
+  #Input Factories
+
+  App\Example\Application\TestActionInputFactory:
+    tags:
+      - { name: action.input_factory }
