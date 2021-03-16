@@ -13,3 +13,8 @@ _Starting Project_
 _Running tests_
 
 `make run-tests`
+
+Project will be available at `localhost:8095`
+
+_There is one example endpoint that you can check out_
+`localhost:8095/example/action/{integer}, for example localhosot:8095/example/action/10`
