@@ -6,17 +6,17 @@ namespace App\Example\Application;
 use App\Shared\Symfony\InputFactory\InputFactory;
 use Symfony\Component\HttpFoundation\Request;
 
-final class TestActionInputFactory implements InputFactory
+final class SquareActionInputFactory implements InputFactory
 {
     public function convert(Request $request): object
     {
-        return new TestActionInput(
+        return new SquareActionInput(
             (int) $request->get('testInt')
         );
     }
 
     public static function supports(): string
     {
-        return TestActionInput::class;
+        return SquareActionInput::class;
     }
 }

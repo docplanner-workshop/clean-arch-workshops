@@ -3,6 +3,6 @@
 #    controller: App\Controller\DefaultController::index
 
 example:
-  path: /example/action/{testInt}
-  controller: App\Example\Application\TestAction
+  path: /example/square/{testInt}
+  controller: App\Example\Application\SquareAction
   methods: ['GET']

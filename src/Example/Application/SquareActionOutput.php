@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Example\Application;
 
-final class TestActionOutput
+final class SquareActionOutput
 {
     private int $output;
 

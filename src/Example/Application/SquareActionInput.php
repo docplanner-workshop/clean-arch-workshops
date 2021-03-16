@@ -5,7 +5,7 @@ namespace App\Example\Application;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class TestActionInput
+final class SquareActionInput
 {
     /**
      * @Assert\GreaterThan(value="0")
