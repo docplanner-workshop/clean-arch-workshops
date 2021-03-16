@@ -1,6 +1,11 @@
 start-containers:
 	docker-compose up -d --force-recreate
 
+start-containers-with-install:
+	docker-compose up -d --force-recreate
+	docker-compose exec php-fpm ./composer.phar install
+	make migrate
+
 stop-containers:
 	docker-compose down
 
