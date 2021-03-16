@@ -17,4 +17,4 @@ _Running tests_
 Project will be available at `localhost:8095`
 
 _There is one example endpoint that you can check out_
-`localhost:8095/example/action/{integer}, for example localhosot:8095/example/action/10`
+`localhost:8095/example/action/{integer}, for example localhost:8095/example/action/10`
