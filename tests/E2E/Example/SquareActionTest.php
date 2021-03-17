@@ -6,7 +6,7 @@ namespace App\Tests\E2E\Example;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-final class TestActionTest extends WebTestCase
+final class SquareActionTest extends WebTestCase
 {
     private KernelBrowser $client;
     /** @var object|\Symfony\Bundle\FrameworkBundle\Routing\Router|null */
@@ -31,7 +31,7 @@ final class TestActionTest extends WebTestCase
 
         $this->assertEquals(
             100,
-            json_decode($this->client->getResponse()->getContent(), true)['output']
+            json_decode($this->client->getResponse()->getContent(), true)['square']
         );
     }
 }
