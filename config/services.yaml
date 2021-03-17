@@ -48,6 +48,6 @@ services:
 
   #Input Factories
 
-  App\Example\Application\SquareActionInputFactory:
+  App\Example\Infrastructure\ActionInputFactory\SquareInputFactory:
     tags:
       - { name: action.input_factory }

@@ -27,6 +27,8 @@ final class TestActionTest extends WebTestCase
             ])
         );
 
+        $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
+
         $this->assertEquals(
             100,
             json_decode($this->client->getResponse()->getContent(), true)['output']

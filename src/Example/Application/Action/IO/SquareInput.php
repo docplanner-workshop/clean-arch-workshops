@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Example\Application;
+namespace App\Example\Application\Action\IO;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class SquareActionInput
+final class SquareInput
 {
     /**
      * @Assert\GreaterThan(value="0")

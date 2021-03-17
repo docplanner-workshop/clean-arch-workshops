@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Example\Application;
+namespace App\Example\Application\Action\IO;
 
-final class SquareActionOutput
+final class SquareOutput
 {
     private int $output;
 

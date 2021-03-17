@@ -1,22 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Example\Application;
+namespace App\Example\Infrastructure\ActionInputFactory;
 
+use App\Example\Application\Action\IO\SquareInput;
 use App\Shared\Symfony\InputFactory\InputFactory;
 use Symfony\Component\HttpFoundation\Request;
 
-final class SquareActionInputFactory implements InputFactory
+final class SquareInputFactory implements InputFactory
 {
     public function convert(Request $request): object
     {
-        return new SquareActionInput(
+        return new SquareInput(
             (int) $request->get('testInt')
         );
     }
 
     public static function supports(): string
     {
-        return SquareActionInput::class;
+        return SquareInput::class;
     }
 }
