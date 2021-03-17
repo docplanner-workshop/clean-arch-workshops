@@ -5,15 +5,15 @@ namespace App\Example\Application\Action\IO;
 
 final class SquareOutput
 {
-    private int $output;
+    private int $square;
 
     public function __construct(int $output)
     {
-        $this->output = $output;
+        $this->square = $output;
     }
 
-    public function getOutput(): int
+    public function getSquare(): int
     {
-        return $this->output;
+        return $this->square;
     }
 }
