@@ -40,10 +40,4 @@ final class ActionInputParamConverter implements ParamConverterInterface
 
         return $this->factory::supports() === $configuration->getClass();
     }
-
-    private function validate(object $input): void
-    {
-
-    }
-
 }
