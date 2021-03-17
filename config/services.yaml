@@ -11,6 +11,11 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+  #Controllers
+
+  App\Example\Application\Action\Square:
+    public: true #Controllers must be public
+
   #Event Listeners
 
   App\Shared\Symfony\Listener\InputValidationExceptionListener:
@@ -51,3 +56,7 @@ services:
   App\Example\Infrastructure\ActionInputFactory\SquareInputFactory:
     tags:
       - { name: action.input_factory }
+
+  #Services
+
+  App\Example\Application\Service\Calculator: ~
