@@ -35,6 +35,15 @@ class Doctor extends Entity
         return $this->bookings->toArray();
     }
 
+    public function addBooking(Booking $booking): void
+    {
+        if (!$this->hasFreeSpace($booking->visitSpan())) {
+            throw new \DomainException(sprintf('Doctor of %s has no free space for visit', $this->doctorName->name()));
+        }
+
+        $this->bookings->add($booking);
+    }
+
     public function hasFreeSpace(VisitSpan $visitSpan): bool
     {
         return true; //@TODO: Implement Logic

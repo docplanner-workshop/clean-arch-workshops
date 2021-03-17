@@ -30,13 +30,11 @@ class Booking extends Entity
 
     public function __construct(Doctor $doctor, VisitSpan $visitSpan, Patient $patient)
     {
-        if (!$doctor->hasFreeSpace($visitSpan)) {
-            throw new \DomainException(sprintf('Doctor of id %s has no free space for visit', $doctor->id()));
-        }
-
         $this->doctor = $doctor;
         $this->visitSpan = $visitSpan;
         $this->patient = $patient;
+
+        $this->doctor->addBooking($this);
     }
 
     public function doctor(): Doctor
