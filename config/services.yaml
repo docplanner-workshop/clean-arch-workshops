@@ -16,6 +16,9 @@ services:
   App\Example\Application\Action\Square:
     public: true #Controllers must be public
 
+  App\Docplanner\Application\Action\BookVisit:
+    public: true
+
   #Event Listeners
 
   App\Shared\Symfony\Listener\InputValidationExceptionListener:
@@ -57,6 +60,10 @@ services:
     tags:
       - { name: action.input_factory }
 
+  App\Docplanner\Infrastructure\ActionInputFactory\BookVisitInputFactory:
+    tags:
+      - { name: action.input_factory }
+
   #Services
 
   App\Example\Application\Service\Calculator: ~
@@ -71,3 +78,7 @@ services:
 
   App\Docplanner\Domain\Repository\Patients:
     class: App\Docplanner\Infrastructure\Repository\DoctrinePatients
+
+  #Factories:
+
+  App\Docplanner\Application\Factory\BookingFactory: ~

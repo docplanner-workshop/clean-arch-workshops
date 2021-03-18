@@ -9,6 +9,8 @@ use App\Docplanner\Application\Factory\BookingFactory;
 use App\Docplanner\Domain\Repository\Bookings;
 use App\Docplanner\Domain\Repository\Doctors;
 use App\Docplanner\Domain\Repository\Patients;
+use App\Shared\Annotation\HttpMetadata;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 final class BookVisit
 {
@@ -29,6 +31,10 @@ final class BookVisit
         $this->bookings = $bookings;
     }
 
+    /**
+     * @ParamConverter(converter="converter.action_input", name="input")
+     * @HttpMetadata(statusCode="201")
+     */
     public function __invoke(BookVisitInput $input): BookVisitOutput
     {
         $doctor = $this->doctors->getById($input->getDoctorId());
@@ -40,7 +46,7 @@ final class BookVisit
 
         return new BookVisitOutput(
             $booking->id(),
-            (int) $booking->visitSpan()->length()->format('i')
+            (int) $booking->visitSpan()->length()->format('%i')
         );
     }
 }

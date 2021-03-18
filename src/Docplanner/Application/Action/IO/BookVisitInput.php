@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class BookVisitInput
 {
     /**
-     * @Assert\Greater(0)
+     * @Assert\GreaterThan(0)
      */
     private int $doctorId;
 

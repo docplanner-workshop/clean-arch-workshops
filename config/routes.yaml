@@ -6,3 +6,7 @@ example:
   path: /example/square/{testInt}
   controller: App\Example\Application\Action\Square
   methods: ['GET']
+
+book_visit:
+  path: /docplanner/doctors/{doctorId}/visits/book
+  controller: App\Docplanner\Application\Action\BookVisit
