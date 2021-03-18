@@ -43,7 +43,7 @@ final class BookVisitTest extends WebTestCase
                 'endDate' => '2021-01-01 05:05:00'
             ]
         );
-        dd($this->client->getResponse()->getContent());
+
         $this->assertEquals(201, $this->client->getResponse()->getStatusCode());
     }
 }

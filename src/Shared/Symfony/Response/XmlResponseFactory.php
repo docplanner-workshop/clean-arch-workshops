@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace App\Shared\Symfony\Response;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class JsonResponseFactory implements ContentTypeResponseFactory
+final class XmlResponseFactory implements ContentTypeResponseFactory
 {
+    /** @var SerializerInterface */
     private SerializerInterface $serializer;
 
     public function __construct(SerializerInterface $serializer)
@@ -18,16 +18,17 @@ final class JsonResponseFactory implements ContentTypeResponseFactory
 
     public function createResponse(object $object): Response
     {
-        return new JsonResponse(
-            $this->serializer->serialize($object, 'json'),
+        return new Response(
+            $this->serializer->serialize($object, 'xml'),
             Response::HTTP_OK,
-            [],
-            true
+            [
+                'Content-Type' => 'application/xml'
+            ]
         );
     }
 
     public static function contentType(): string
     {
-        return 'application/json';
+        return 'application/xml';
     }
 }

@@ -40,7 +40,7 @@ services:
 
   App\Shared\Symfony\ParamConverter\InputFactoryServiceLocator:
     arguments:
-      - !tagged_locator {tag: action.input_factory, index_by: key, default_index_method: 'supports'}
+      - !tagged_locator { tag: action.input_factory, index_by: key, default_index_method: 'supports' }
 
   get_set_method_normalizer:
     class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
@@ -52,7 +52,20 @@ services:
     class: App\Shared\Symfony\InputFactory\SymfonyValidator
 
   App\Shared\Symfony\Response\ResponseFactory:
-    class: App\Shared\Symfony\Response\JsonResponseFactory
+    class: App\Shared\Symfony\Response\CallContextResponseFactory
+    arguments:
+      - '@request_stack'
+      - !tagged_locator { tag: action.response_factory, index_by: key, default_index_method: 'contentType' }
+      - '@App\Shared\Symfony\Response\JsonResponseFactory'
+
+  App\Shared\Symfony\Response\JsonResponseFactory:
+    tags:
+      - { name: action.response_factory }
+
+  App\Shared\Symfony\Response\XmlResponseFactory:
+    tags:
+      - { name: action.response_factory }
+
 
   #Input Factories
 
