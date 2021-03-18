@@ -60,3 +60,14 @@ services:
   #Services
 
   App\Example\Application\Service\Calculator: ~
+
+  #Repositories:
+
+  App\Docplanner\Domain\Repository\Bookings:
+    class: App\Docplanner\Infrastructure\Repository\DoctrineBookings
+
+  App\Docplanner\Domain\Repository\Doctors:
+    class: App\Docplanner\Infrastructure\Repository\DoctrineDoctors
+
+  App\Docplanner\Domain\Repository\Patients:
+    class: App\Docplanner\Infrastructure\Repository\DoctrinePatients
