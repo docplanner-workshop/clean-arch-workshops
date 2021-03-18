@@ -1,0 +1,52 @@
+paths:
+  - ./src
+exclude_files: ~
+layers:
+  -   name: Application
+      collectors:
+        -   type: bool
+            must:
+              - type: className
+                regex: .*App\\Docplanner\\Application\\.*
+  -   name: Domain
+      collectors:
+        -   type: bool
+            must:
+              - type: className
+                regex: .*App\\Docplanner\\Domain\\.*
+  -   name: Infrastructure
+      collectors:
+        -   type: className
+            regex: .*App\\Docplanner\\Infrastructure\\.*
+  -   name: Shared
+      collectors:
+        -   type: className
+            regex: .*App\\Shared\\.*
+  -   name: System
+      collectors:
+        -   type: bool
+            must:
+              - type: className
+                regex: .*App\\
+            must_not:
+              - type: className
+                regex: .*App\\Shared\\.*
+
+              - type: className
+                regex: .*App\\Docplanner\\.*
+
+
+ruleset:
+  Application:
+    - Domain
+  Domain:
+    - Shared
+  Infrastructure:
+    - Shared
+    - Domain
+    - Application
+  Shared:
+    - System
+  System:
+    - Shared
+
